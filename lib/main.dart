@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
-import 'package:study_buddy/widget_tree.dart';
 import 'package:study_buddy/pages/login_register_page.dart';
 import 'package:study_buddy/pages/home_page.dart';
 import 'package:study_buddy/pages/course_list_page.dart';
+import 'package:study_buddy/pages/profile_page.dart';
+import 'package:study_buddy/widget_tree.dart';
 
 
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/login': (context) => const LoginPage(),
         '/courses': (context) => CourseListPage(),
+        '/profile': (context) => ProfilePage(),
       },
     );
   }

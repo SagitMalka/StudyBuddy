@@ -17,6 +17,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget _navigateToProfileButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, '/profile');
+      },
+      child: const Text('My Profile'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +42,8 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             UserInfoWidget(),
             _navigateToCoursesButton(context),
+            const SizedBox(height: 10),
+            _navigateToProfileButton(context),
           ],
         ),
       ),
