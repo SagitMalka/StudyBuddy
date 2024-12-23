@@ -47,7 +47,6 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            UserInfoWidget(),
             _navigateToCoursesButton(context),
           ],
         ),
