@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:study_buddy/auth.dart';
 import 'package:flutter/material.dart';
+import 'course_list_page.dart'; 
 
 class HomePage extends StatelessWidget{
   HomePage({super.key});
@@ -23,6 +24,17 @@ class HomePage extends StatelessWidget{
       child: const Text('Sign Out'),
       );
   }
+  Widget _navigateToCoursesButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CourseListPage()),
+        );
+      },
+      child: const Text('View Courses'),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +51,7 @@ class HomePage extends StatelessWidget{
           children: <Widget>[
             _userUid(),
             _signOutButton(),
+            _navigateToCoursesButton(context), // Button to view courses
           ],
         ),
       ),
