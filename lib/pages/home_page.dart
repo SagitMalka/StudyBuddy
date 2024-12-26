@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:study_buddy/widgets/user_info_widget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -20,6 +19,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget _navigateToMyCoursesButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, '/my_courses');
+      },
+      child: const Text('My Courses'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +36,8 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: CircleAvatar(
-              backgroundImage: user?.photoURL != null
-                  ? NetworkImage(user!.photoURL!)
-                  : null,
+              backgroundImage:
+                  user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
               child: user?.photoURL == null ? const Icon(Icons.person) : null,
             ),
             onPressed: () {
@@ -47,6 +54,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _navigateToMyCoursesButton(context),
             _navigateToCoursesButton(context),
           ],
         ),

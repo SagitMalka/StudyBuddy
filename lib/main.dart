@@ -5,8 +5,7 @@ import 'package:study_buddy/pages/home_page.dart';
 import 'package:study_buddy/pages/course_list_page.dart';
 import 'package:study_buddy/pages/profile_page.dart';
 import 'package:study_buddy/widget_tree.dart';
-
-
+import 'package:study_buddy/pages/my_courses_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
@@ -29,8 +28,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => const WidgetTree(),
         '/home': (context) => HomePage(),
         '/login': (context) => const LoginPage(),
-        '/courses': (context) => CourseListPage(),
+        '/courses': (context) => const CourseListPage(),
         '/profile': (context) => ProfilePage(),
+        '/my_courses': (context) => const MyCoursesPage(),
       },
     );
   }
