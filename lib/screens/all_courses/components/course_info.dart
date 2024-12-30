@@ -74,8 +74,9 @@ void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course) 
         ),
         actions: [
           TextButton(
+            child: const Text('Add To My Courses'),
             onPressed: () async {
-              await userService.addCourseToUser(course['name']);
+              await userService.addCourseToUser(course['id']);
 
               final truncatedName = course['name'].length > 25 ? '${course['name'].substring(0, 25)}...' : course['name'];
 
@@ -88,9 +89,9 @@ void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course) 
                   configuration: const IconConfiguration(icon: Icons.check_circle, color: Colors.green),
                   backgroundColor: Colors.green[50],
                 );
+                Navigator.pop(context);
               }
             },
-            child: const Text('Add To My Courses'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context),

@@ -10,7 +10,7 @@ class MyCoursesPage extends StatefulWidget {
 
 class _MyCoursesPageState extends State<MyCoursesPage> {
   final UserService _userService = UserService();
-  List<String> _myCourses = [];
+  List<Map<String, dynamic>> _myCourses = [];
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
         itemCount: _myCourses.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(_myCourses[index]),
+            title: Text(_myCourses[index]['name']),
           );
         },
       ),

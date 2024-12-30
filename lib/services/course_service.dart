@@ -7,7 +7,11 @@ class CourseService {
 
   Future<List<Map<String, dynamic>>> fetchAllCourses() async {
     final snapshot = await _firestore.collection('courses').get();
-    return snapshot.docs.map((doc) => doc.data()).toList();
+    return snapshot.docs.map((doc) {
+      var data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
   // Load courses from JSON file into Firestore
