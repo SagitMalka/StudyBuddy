@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_buddy/services/course_service.dart';
 import 'package:study_buddy/services/user_service.dart';
+import 'package:status_alert/status_alert.dart';
 
 class CourseListPage extends StatefulWidget {
   const CourseListPage({super.key});
@@ -44,9 +45,22 @@ class _CourseListPageState extends State<CourseListPage> {
               icon: const Icon(Icons.add),
               onPressed: () async {
                 await _userService.addCourseToUser(course['name']);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${course['name']} added to My Courses!')),
-                );
+
+                final truncatedName = course['name'].length > 25
+                    ? '${course['name'].substring(0, 25)}...'
+                    : course['name'];
+
+                if (context.mounted) {
+                  StatusAlert.show(
+                    context,
+                    duration: const Duration(seconds: 2),
+                    title: 'Success',
+                    subtitle: '$truncatedName\nadded to your Courses!',
+                    configuration: const IconConfiguration(
+                        icon: Icons.check_circle, color: Colors.green),
+                    backgroundColor: Colors.green[50],
+                  );
+                }
               },
             ),
           );
