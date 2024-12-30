@@ -1,291 +1,163 @@
 [
-    {
-      "name": "Introduction to Computer Science",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Algorithms and Data Structures",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Electrical Engineering Basics",
-      "major": "Engineering"
-    },
-    {
-      "name": "Object-Oriented Programming",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Web Development",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Mobile App Development",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Database Systems",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Operating Systems",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Computer Networks",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Artificial Intelligence",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Machine Learning",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Software Engineering",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Cybersecurity",
-      "major": "Computer Science"
-    },
-    {
-      "name": "Calculus I",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Calculus II",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Linear Algebra",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Discrete Mathematics",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Probability and Statistics",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Differential Equations",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Mathematical Logic",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Number Theory",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Graph Theory",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Mathematical Proofs",
-      "major": "Mathematics"
-    },
-    {
-      "name": "Thermodynamics",
-      "major": "Engineering"
-    },
-    {
-      "name": "Fluid Mechanics",
-      "major": "Engineering"
-    },
-    {
-      "name": "Control Systems",
-      "major": "Engineering"
-    },
-    {
-      "name": "Digital Circuits",
-      "major": "Engineering"
-    },
-    {
-      "name": "Signal Processing",
-      "major": "Engineering"
-    },
-    {
-      "name": "Electronics",
-      "major": "Engineering"
-    },
-    {
-      "name": "Mechanical Design",
-      "major": "Engineering"
-    },
-    {
-      "name": "Engineering Materials",
-      "major": "Engineering"
-    },
-    {
-      "name": "Civil Engineering Basics",
-      "major": "Engineering"
-    },
-    {
-      "name": "Energy Systems",
-      "major": "Engineering"
-    },
-    {
-      "name": "Microeconomics",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Macroeconomics",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Marketing Principles",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Financial Accounting",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Corporate Finance",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Entrepreneurship",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Business Analytics",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Business Ethics",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Supply Chain Management",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "International Trade",
-      "major": "Business & Economics"
-    },
-    {
-      "name": "Psychology 101",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Introduction to Sociology",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "History of Philosophy",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Political Science",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Cultural Studies",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Ethics and Society",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Global Studies",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Linguistics",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Social Psychology",
-      "major": "Humanities & Social Sciences"
-    },
-    {
-      "name": "Graphic Design Fundamentals",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Introduction to Photography",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "3D Modeling and Animation",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Film Studies",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Art History",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Interior Design Basics",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Creative Writing",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Music Theory",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Digital Illustration",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Fashion Design",
-      "major": "Arts & Design"
-    },
-    {
-      "name": "Human Anatomy",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Medical Terminology",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Nutrition Science",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Psychiatry and Mental Health",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Health Informatics",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Public Health Principles",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Pharmacology Basics",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Nursing Fundamentals",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "Epidemiology",
-      "major": "Health & Medicine"
-    },
-    {
-      "name": "First Aid and CPR",
-      "major": "Health & Medicine"
-    }
-  ]
-  
+  {
+    "name": "Introduction to Computer Science",
+    "major": "Computer Science",
+    "description": "Learn the fundamentals of computer science, including algorithms, data structures, and programming languages.",
+    "schedule": "Mon, Wed, Fri - 10:00 AM to 11:30 AM",
+    "instructor": "Dr. John Smith"
+  },
+  {
+    "name": "Algorithms and Data Structures",
+    "major": "Computer Science",
+    "description": "A deep dive into algorithms, data structures, and their applications in real-world problem-solving.",
+    "schedule": "Tue, Thu - 1:00 PM to 3:00 PM",
+    "instructor": "Dr. Jane Doe"
+  },
+  {
+    "name": "Electrical Engineering Basics",
+    "major": "Electrical Engineering",
+    "description": "An introductory course to electrical engineering, focusing on circuits, electromagnetism, and basic electrical theory.",
+    "schedule": "Mon, Wed - 9:00 AM to 11:00 AM",
+    "instructor": "Prof. Alan Turing"
+  },
+  {
+    "name": "Data Science with Python",
+    "major": "Data Science",
+    "description": "Learn how to manipulate data, perform statistical analysis, and create data-driven solutions using Python.",
+    "schedule": "Mon, Wed - 2:00 PM to 4:00 PM",
+    "instructor": "Dr. Emily Clark"
+  },
+  {
+    "name": "Machine Learning",
+    "major": "Artificial Intelligence",
+    "description": "Understand the principles of machine learning, including supervised and unsupervised learning algorithms.",
+    "schedule": "Tue, Thu - 11:00 AM to 1:00 PM",
+    "instructor": "Dr. Michael Lee"
+  },
+  {
+    "name": "Digital Circuit Design",
+    "major": "Electrical Engineering",
+    "description": "Learn the fundamentals of digital circuits, logic gates, and how to design digital systems.",
+    "schedule": "Mon, Fri - 12:00 PM to 2:00 PM",
+    "instructor": "Prof. Sarah Johnson"
+  },
+  {
+    "name": "Discrete Mathematics",
+    "major": "Mathematics",
+    "description": "Study mathematical structures and concepts such as sets, relations, graphs, and combinatorics.",
+    "schedule": "Mon, Wed, Fri - 8:00 AM to 9:30 AM",
+    "instructor": "Dr. Robert Brown"
+  },
+  {
+    "name": "Database Systems",
+    "major": "Computer Science",
+    "description": "Learn the fundamentals of database design, normalization, and SQL programming for managing data.",
+    "schedule": "Tue, Thu - 10:00 AM to 12:00 PM",
+    "instructor": "Dr. Alice Green"
+  },
+  {
+    "name": "Web Development",
+    "major": "Software Engineering",
+    "description": "Introduction to web development, focusing on HTML, CSS, JavaScript, and modern frameworks.",
+    "schedule": "Mon, Wed - 1:00 PM to 3:00 PM",
+    "instructor": "Prof. Kevin White"
+  },
+  {
+    "name": "Cybersecurity Essentials",
+    "major": "Cybersecurity",
+    "description": "An introduction to the principles of cybersecurity, network security, and data protection.",
+    "schedule": "Tue, Thu - 3:00 PM to 5:00 PM",
+    "instructor": "Dr. Olivia Gray"
+  },
+  {
+    "name": "Cloud Computing",
+    "major": "Computer Science",
+    "description": "Learn about cloud services, deployment models, and the architecture of cloud-based systems.",
+    "schedule": "Mon, Fri - 9:00 AM to 11:00 AM",
+    "instructor": "Prof. David Black"
+  },
+  {
+    "name": "Advanced Machine Learning",
+    "major": "Artificial Intelligence",
+    "description": "Explore advanced machine learning topics such as deep learning, reinforcement learning, and natural language processing.",
+    "schedule": "Mon, Wed - 11:00 AM to 1:00 PM",
+    "instructor": "Dr. Steven White"
+  },
+  {
+    "name": "Intro to Artificial Intelligence",
+    "major": "Artificial Intelligence",
+    "description": "An introductory course to AI concepts, including search algorithms, machine learning, and robotics.",
+    "schedule": "Tue, Thu - 9:00 AM to 11:00 AM",
+    "instructor": "Prof. Charles Gray"
+  },
+  {
+    "name": "Embedded Systems",
+    "major": "Electrical Engineering",
+    "description": "Learn the basics of embedded systems, including microcontrollers, sensors, and real-time operating systems.",
+    "schedule": "Mon, Wed - 2:00 PM to 4:00 PM",
+    "instructor": "Prof. Julia Roberts"
+  },
+  {
+    "name": "Computational Biology",
+    "major": "Bioinformatics",
+    "description": "Explore the intersection of computer science and biology, focusing on algorithms for genomic data analysis.",
+    "schedule": "Mon, Fri - 3:00 PM to 5:00 PM",
+    "instructor": "Dr. Susan Lee"
+  },
+  {
+    "name": "Internet of Things (IoT)",
+    "major": "Computer Science",
+    "description": "Learn the principles and technologies behind the Internet of Things, including sensors, networks, and cloud integration.",
+    "schedule": "Tue, Thu - 12:00 PM to 2:00 PM",
+    "instructor": "Dr. Mark Smith"
+  },
+  {
+    "name": "Software Engineering Principles",
+    "major": "Software Engineering",
+    "description": "Understand the key principles of software engineering, including design patterns, testing, and project management.",
+    "schedule": "Mon, Wed - 9:00 AM to 11:00 AM",
+    "instructor": "Prof. Laura Brown"
+  },
+  {
+    "name": "Quantum Computing",
+    "major": "Physics",
+    "description": "Introduction to quantum computing, including quantum bits, quantum gates, and algorithms.",
+    "schedule": "Tue, Fri - 10:00 AM to 12:00 PM",
+    "instructor": "Dr. Alice Walker"
+  },
+  {
+    "name": "Mobile Application Development",
+    "major": "Software Engineering",
+    "description": "Learn how to develop mobile applications using modern frameworks like Flutter and React Native.",
+    "schedule": "Mon, Fri - 3:00 PM to 5:00 PM",
+    "instructor": "Prof. Jennifer Lee"
+  },
+  {
+    "name": "Operating Systems",
+    "major": "Computer Science",
+    "description": "Study the core concepts of operating systems, including memory management, file systems, and process synchronization.",
+    "schedule": "Mon, Thu - 1:00 PM to 3:00 PM",
+    "instructor": "Dr. Chris Anderson"
+  },
+  {
+    "name": "Computer Networks",
+    "major": "Computer Science",
+    "description": "Learn the fundamentals of computer networking, including protocols, network architectures, and security.",
+    "schedule": "Wed, Fri - 2:00 PM to 4:00 PM",
+    "instructor": "Prof. James Miller"
+  },
+  {
+    "name": "Data Visualization",
+    "major": "Data Science",
+    "description": "Learn how to visualize data using tools like Tableau, Power BI, and Python libraries like Matplotlib and Seaborn.",
+    "schedule": "Mon, Wed - 12:00 PM to 2:00 PM",
+    "instructor": "Dr. Rachel Adams"
+  },
+  {
+    "name": "Artificial Neural Networks",
+    "major": "Artificial Intelligence",
+    "description": "An in-depth look into artificial neural networks, including deep learning and convolutional networks.",
+    "schedule": "Tue, Thu - 2:00 PM to 4:00 PM",
+    "instructor": "Dr. Thomas King"
+  }
+]

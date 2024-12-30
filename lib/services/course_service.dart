@@ -14,23 +14,22 @@ class CourseService {
   Future<void> loadCoursesToFirebase() async {
     try {
       // Load the JSON file from assets
-      final String response =
-          await rootBundle.loadString('assets/DB/courses.json');
+      final String response = await rootBundle.loadString('assets/DB/courses.json');
 
       final List<dynamic> courses = json.decode(response);
 
       for (final course in courses) {
         // Check if the course already exists
-        final QuerySnapshot existingCourse = await _firestore
-            .collection('courses')
-            .where('name', isEqualTo: course['name'])
-            .get();
+        final QuerySnapshot existingCourse = await _firestore.collection('courses').where('name', isEqualTo: course['name']).get();
 
         if (existingCourse.docs.isEmpty) {
           // If course does not exist, add it to Firestore
           await _firestore.collection('courses').add({
             'name': course['name'],
             'major': course['major'],
+            'description': course['description'],
+            'schedule': course['schedule'],
+            'instructor': course['instructor'],
           });
         } else {
           // If course exists, update it (overwrite the existing document)
@@ -38,6 +37,9 @@ class CourseService {
           await _firestore.collection('courses').doc(courseDoc.id).update({
             'name': course['name'],
             'major': course['major'],
+            'description': course['description'],
+            'schedule': course['schedule'],
+            'instructor': course['instructor'],
           });
         }
       }
