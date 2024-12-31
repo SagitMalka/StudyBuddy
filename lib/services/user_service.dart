@@ -5,8 +5,13 @@ class UserService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  User? getCurrentUser() {
+    final User? user = _auth.currentUser;
+    return user;
+  }
+
   Future<List<Map<String, dynamic>>> fetchUserCourses() async {
-    final user = _auth.currentUser;
+    final user = getCurrentUser();
 
     if (user != null) {
       // Fetch user courses (the list of course IDs the user is enrolled in)
@@ -50,6 +55,67 @@ class UserService {
           'user_courses': [courseName]
         });
       }
+    }
+  }
+
+  Future<void> removeCourseFromUser(String courseName) async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      // Get the user's document from Firebase
+      final doc = await _firestore.collection('users').doc(user.uid).get();
+
+      // Check if the user document exists and contains the user_courses field
+      if (doc.exists && doc.data() != null) {
+        List<dynamic> userCourses = doc['user_courses'] ?? [];
+
+        // Check if the course exists in the user's courses list
+        if (userCourses.contains(courseName)) {
+          // Remove the course from the user's courses list
+          userCourses.remove(courseName);
+
+          // Update the user's document with the new list
+          await _firestore.collection('users').doc(user.uid).update({
+            'user_courses': userCourses,
+          });
+
+          print('Course removed: $courseName');
+        } else {
+          print('Course not found in user\'s courses list');
+        }
+      } else {
+        print('User document not found');
+      }
+    } else {
+      print('User not authenticated');
+    }
+  }
+
+  Future<void> updateUserInfo(String name, String email) async {
+    try {
+      // Get the current user
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Update the display name in Firebase Authentication
+        await user.updateDisplayName(name);
+
+        // Update user info in Firestore under the 'users' collection
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set(
+          {
+            'email': email,
+            'displayName': name,
+            'user_courses': [], // Initialize with an empty list or add default values
+          },
+          SetOptions(merge: true), // Ensures only the specified fields are updated if the document exists
+        );
+        print("User info updated successfully");
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle specific Firebase authentication errors
+      print('Error updating user info: ${e.message}');
+    } catch (e) {
+      // Handle any other errors
+      print('Unexpected error: $e');
     }
   }
 }

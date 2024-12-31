@@ -5,7 +5,9 @@ import 'package:study_buddy/screens/home_page.dart';
 import 'package:study_buddy/screens/all_courses/all_courses_screen.dart';
 import 'package:study_buddy/screens/profile_page.dart';
 import 'package:study_buddy/widget_tree.dart';
-import 'package:study_buddy/screens/my_courses_page.dart';
+import 'package:study_buddy/screens/user_courses/user_courses_screen.dart';
+
+import 'screens/course_forum/course_forum_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/courses': (context) => const CourseListPage(),
         '/profile': (context) => ProfilePage(),
         '/my_courses': (context) => const MyCoursesPage(),
+        '/course_forum': (context) => CourseForumScreen(courseId: ModalRoute.of(context)!.settings.arguments as String),
       },
     );
   }
