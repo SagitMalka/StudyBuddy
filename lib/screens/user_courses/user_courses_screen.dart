@@ -12,17 +12,33 @@ class MyCoursesPage extends StatefulWidget {
 class _MyCoursesPageState extends State<MyCoursesPage> {
   final UserService _userService = UserService();
   List<Map<String, dynamic>> _myCourses = [];
+  List<Map<String, dynamic>> _filteredCourses = [];
+  TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadUserCourses();
+    _searchController.addListener(_filterCourses);
   }
 
   Future<void> _loadUserCourses() async {
     final courses = await _userService.fetchUserCourses();
     setState(() {
       _myCourses = courses;
+      _filteredCourses = courses;
+    });
+  }
+
+  void _filterCourses() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredCourses = _myCourses.where((course) => 
+        (course["name"]?.toLowerCase().contains(query) ?? false) ||
+        (course["major"]?.toLowerCase().contains(query) ?? false) ||
+        (course["instructor"]?.toLowerCase().contains(query) ?? false) ||
+        query.isEmpty
+      ).toList();
     });
   }
 
@@ -32,22 +48,46 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
       appBar: AppBar(
         title: const Text('My Courses'),
       ),
-      body: ListView.builder(
-        itemCount: _myCourses.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(_myCourses[index]['name']),
-            onTap: () => Navigator.pushNamed(
-              context,
-              '/course_forum',
-              arguments: _myCourses[index]['id'],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search my courses...',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
             ),
-            trailing: IconButton(
-              icon: const Icon(Icons.info),
-              onPressed: () => showCourseDetailsDialog(context, _myCourses[index], actionType: 'user_courses'),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _filteredCourses.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_filteredCourses[index]['name']),
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      '/course_forum',
+                      arguments: _filteredCourses[index]['id'],
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.info),
+                      onPressed: () => showCourseDetailsDialog(
+                        context,
+                        _filteredCourses[index],
+                        actionType: 'user_courses',
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }
