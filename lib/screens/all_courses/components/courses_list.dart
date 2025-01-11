@@ -71,7 +71,10 @@ class CourseListView extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                       elevation: 4,
                       child: ListTile(
-                        title: Text(course['name'], style: const TextStyle(fontSize: 18)),
+                        title: Text(
+                          course['name'],
+                          style: const TextStyle(fontSize: 18),
+                        ),
                         subtitle: Text(course['instructor'] ?? 'Instructor not available'),
                         onTap: () => showCourseDetailsDialog(context, course, actionType: 'course_list'),
                       ),
