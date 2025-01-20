@@ -128,6 +128,21 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
     }
   }
 
+  // Method to join an existing request
+  Future<void> _leaveRequest(String requestId) async {
+    final user = _userService.getCurrentUser();
+    if (user != null) {
+      await _firestore.collection('course_requests').doc(requestId).update({
+        'status': 'joined',
+        'users': FieldValue.arrayRemove([user.uid]),
+      });
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You have left the group!')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = _userService.getCurrentUser();
@@ -179,7 +194,11 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
                                 onPressed: () => _joinRequest(requestId),
                                 child: const Text('Join'),
                               )
-                            : Text("joind"))
+                            : ElevatedButton(
+                      onPressed: () => _leaveRequest(requestId),
+                      child: const Text('Leave'),
+                    )
+                    )
                         : Text("full"),
                   ),
                 ),
