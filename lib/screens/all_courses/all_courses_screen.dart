@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:study_buddy/services/course_service.dart';
 
 import 'components/courses_list.dart';
-import 'components/upload_courses_to_db.dart';
+import 'package:study_buddy/ViewModel/upload_courses_to_db.dart';
 
 class CourseListPage extends StatefulWidget {
   const CourseListPage({super.key});
