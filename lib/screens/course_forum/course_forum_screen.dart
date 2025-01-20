@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CourseForumScreen extends StatefulWidget {
   final String courseId;
+
   const CourseForumScreen({super.key, required this.courseId});
 
   _CourseForumScreenState createState() => _CourseForumScreenState();
@@ -18,7 +19,8 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
 
   // Method to fetch existing requests for the course
   Future<List<Map<String, dynamic>>> _fetchRequests() async {
-    final snapshot = await _firestore.collection('course_requests').where('courseId', isEqualTo: widget.courseId).get();
+    final snapshot = await _firestore.collection('course_requests').where(
+        'courseId', isEqualTo: widget.courseId).get();
     return snapshot.docs.map((doc) {
       final data = doc.data();
       data['id'] = doc.id;
@@ -143,6 +145,32 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
     }
   }
 
+  List<Widget> _trailingWidget(String? creatorId, String? userUid, List users, int numOfUsers, String requestId) {
+    List<Widget> children = [];
+    if (users.length < numOfUsers) {
+      if (!users.contains(userUid)) {
+        children.add(ElevatedButton(
+          onPressed: () => _joinRequest(requestId),
+          child: const Text('Join'),
+        ));
+      } else {
+        children.add(ElevatedButton(
+          onPressed: () => _leaveRequest(requestId),
+          child: const Text('Leave'),
+        ));
+      }
+    } else {
+      children.add(Text("Full"));
+    }
+    if(creatorId == userUid && userUid != null) {
+      children.add(ElevatedButton(
+        onPressed: () {},
+        child: const Text('Exit group'),
+      ));
+    }
+    return children;
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = _userService.getCurrentUser();
@@ -174,6 +202,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
               final details = request['details'] ?? 'No details provided.';
               final users = request['users'] ?? [];
               final numOfUsers = request['numOfUsers'] ?? 0;
+              final String? creatorID = request['creatorId'];
 
               return Card(
                 margin: const EdgeInsets.symmetric(vertical: 8),
@@ -188,18 +217,12 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
                   child: ListTile(
                     title: Text('$requestName: ${users.length}/$numOfUsers Users'),
                     subtitle: Text(details),
-                    trailing: users.length < numOfUsers
-                        ? (!users.contains(user?.uid)
-                            ? ElevatedButton(
-                                onPressed: () => _joinRequest(requestId),
-                                child: const Text('Join'),
-                              )
-                            : ElevatedButton(
-                      onPressed: () => _leaveRequest(requestId),
-                      child: const Text('Leave'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ..._trailingWidget(creatorID, user?.uid, users, numOfUsers, requestId),
+                      ],
                     )
-                    )
-                        : Text("full"),
                   ),
                 ),
               );
