@@ -32,7 +32,7 @@ Widget _title() {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       // Icon(Icons.school, color: Colors.purpleAccent, size: 32),
-      SizedBox(width: 15),
+      const SizedBox(width: 15),
       Text(
         'Study Buddy',
         style: GoogleFonts.modak(
@@ -40,12 +40,12 @@ Widget _title() {
           fontSize: 50,
           // fontWeight: FontWeight.bold,
           letterSpacing: 1,
-          color: Colors.deepPurpleAccent,
+          color: const Color.fromARGB(255, 185, 119, 211),
           shadows: [
             Shadow(
-              offset: Offset(3, 3),
+              offset: const Offset(3, 3),
               blurRadius: 4,
-              color: Colors.blue.withOpacity(0.5),
+              color: Colors.blueAccent.withOpacity(0.5),
             ),
           ],
         ),

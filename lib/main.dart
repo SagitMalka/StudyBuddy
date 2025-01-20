@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/login': (context) => const LoginPage(),
         '/courses': (context) => const CourseListPage(),
-        '/profile': (context) => ProfilePage(),
+        '/profile': (context) => const ProfilePage(),
         '/my_courses': (context) => const MyCoursesPage(),
         '/course_forum': (context) => CourseForumScreen(courseId: ModalRoute.of(context)!.settings.arguments as String),
         '/chat': (context) => ChatScreen(requestId: ModalRoute.of(context)!.settings.arguments as String),

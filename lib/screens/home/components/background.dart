@@ -23,15 +23,15 @@ class BackgroundWithImages extends StatelessWidget {
             color: Color.fromARGB(150, 226, 223, 209),
           ),
         ),
-        Positioned(
-          top: MediaQuery.of(context).size.height / 6 - 200,
-          left: (MediaQuery.of(context).size.width / 2) - 200,
-          child: Image.asset(
-            'assets/images/student_hat.png',
-            width: 400,
-            height: 400,
-          ),
-        ),
+        // Positioned(
+        //   top: MediaQuery.of(context).size.height / 6 - 200,
+        //   left: (MediaQuery.of(context).size.width / 2) - 200,
+        //   child: Image.asset(
+        //     'assets/images/student_hat.png',
+        //     width: 400,
+        //     height: 400,
+        //   ),
+        // ),
       ],
     );
   }
