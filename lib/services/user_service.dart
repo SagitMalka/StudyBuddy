@@ -6,9 +6,10 @@ class UserService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   User? getCurrentUser() {
-    final User? user = _auth.currentUser;
-    return user;
+    return _auth.currentUser;
   }
+
+  
 
   Future<List<Map<String, dynamic>>> fetchUserCourses() async {
     final user = getCurrentUser();
@@ -105,6 +106,35 @@ class UserService {
             'email': email,
             'displayName': name,
             'user_courses': [], // Initialize with an empty list or add default values
+          },
+          SetOptions(merge: true), // Ensures only the specified fields are updated if the document exists
+        );
+        print("User info updated successfully");
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle specific Firebase authentication errors
+      print('Error updating user info: ${e.message}');
+    } catch (e) {
+      // Handle any other errors
+      print('Unexpected error: $e');
+    }
+  }
+
+  Future<void> updateUserPhoto(String photoUrl) async {
+    final user = _auth.currentUser;
+    
+
+    try {
+      // Get the current user
+
+      if (user != null) {
+        // Update the display name in Firebase Authentication
+        await user.updatePhotoURL(photoUrl);
+
+        // Update user info in Firestore under the 'users' collection
+        await _firestore.collection('users').doc(user.uid).set(
+          {
+            'photo': photoUrl,
           },
           SetOptions(merge: true), // Ensures only the specified fields are updated if the document exists
         );
