@@ -128,7 +128,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
     }
   }
 
-  // Method to join an existing request
+  // Method to leave an existing request
   Future<void> _leaveRequest(String requestId) async {
     final user = _userService.getCurrentUser();
     if (user != null) {
