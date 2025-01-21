@@ -4,9 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CourseForumScreen extends StatefulWidget {
   final String courseId;
-  CourseForumScreen({Key? key, required this.courseId}) : super(key: key);
+  const CourseForumScreen({super.key, required this.courseId});
 
-  @override
   _CourseForumScreenState createState() => _CourseForumScreenState();
 }
 
@@ -53,7 +52,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
           const SnackBar(content: Text('Your request has been created!')),
         );
       }
-      Navigator.of(context).pop();  // Close the popup after submission
+      Navigator.of(context).pop(); // Close the popup after submission
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill all fields correctly.')),
@@ -66,7 +65,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Create Learning Group Request'),
+          title: const Text('Create Learning Group'),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -91,7 +90,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
                 TextField(
                   controller: _requestDetailsController,
                   decoration: const InputDecoration(
-                    labelText: 'Enter Request Details',
+                    labelText: 'Enter Details',
                     border: OutlineInputBorder(),
                   ),
                   maxLines: 3,
@@ -114,8 +113,6 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
     );
   }
 
-
-  
   // Method to join an existing request
   Future<void> _joinRequest(String requestId) async {
     final user = _userService.getCurrentUser();
@@ -126,11 +123,10 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
       });
       setState(() {});
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('You have joined the request!')),
+        const SnackBar(content: Text('You have joined the group!')),
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +150,6 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
           if (requests.isEmpty) {
             return const Center(child: Text('No groups available.'));
           }
-// !users.contains(user?.uid)
           return ListView.builder(
             itemCount: requests.length,
             itemBuilder: (context, index) {
@@ -178,13 +173,14 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
                   child: ListTile(
                     title: Text('$requestName: ${users.length}/$numOfUsers Users'),
                     subtitle: Text(details),
-                    trailing: users.length < numOfUsers ? (!users.contains(user?.uid) ? 
-                          ElevatedButton(
-                            onPressed: () => _joinRequest(requestId),
-                            child: const Text('Join Request'),
-                          ) : Text("joind"))
+                    trailing: users.length < numOfUsers
+                        ? (!users.contains(user?.uid)
+                            ? ElevatedButton(
+                                onPressed: () => _joinRequest(requestId),
+                                child: const Text('Join'),
+                              )
+                            : Text("joind"))
                         : Text("full"),
-                    
                   ),
                 ),
               );
