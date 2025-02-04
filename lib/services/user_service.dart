@@ -9,7 +9,13 @@ class UserService {
     return _auth.currentUser;
   }
 
-  
+  Future<bool> isAdmin() async {
+    User? user = _auth.currentUser;
+    if (user == null) return false;
+
+    DocumentSnapshot userDoc = await _firestore.collection('users').doc(user.uid).get();
+    return userDoc.exists && (userDoc['isAdmin'] ?? false);
+  }
 
   Future<List<Map<String, dynamic>>> fetchUserCourses() async {
     final user = getCurrentUser();
@@ -105,6 +111,7 @@ class UserService {
           {
             'email': email,
             'displayName': name,
+            'isAdmin': isAdmin(), // Initialize with false or add default values
             'user_courses': [], // Initialize with an empty list or add default values
           },
           SetOptions(merge: true), // Ensures only the specified fields are updated if the document exists
@@ -122,7 +129,6 @@ class UserService {
 
   Future<void> updateUserPhoto(String photoUrl) async {
     final user = _auth.currentUser;
-    
 
     try {
       // Get the current user

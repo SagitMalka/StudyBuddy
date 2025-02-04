@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_buddy/services/course_service.dart';
+import 'package:study_buddy/services/user_service.dart';
 
 class UploadCoursesButton extends StatelessWidget {
   final CourseService _courseService = CourseService();
@@ -8,16 +9,27 @@ class UploadCoursesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        await _courseService.loadCoursesToFirebase();
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Courses added!")),
+    return FutureBuilder<bool>(
+      future: UserService().isAdmin(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox.shrink();
+        }
+        if (snapshot.hasData && snapshot.data == true) {
+          return ElevatedButton(
+            onPressed: () async {
+              await _courseService.loadCoursesToFirebase();
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Courses added!")),
+                );
+              }
+            },
+            child: const Text("Upload Courses"),
           );
         }
+        return const SizedBox.shrink();
       },
-      child: const Text("Upload Courses"),
     );
   }
 }
