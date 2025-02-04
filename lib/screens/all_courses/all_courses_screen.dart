@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:study_buddy/services/course_service.dart';
 
 import 'components/courses_list.dart';
-import 'package:study_buddy/ViewModel/upload_courses_to_db.dart';
+import 'package:study_buddy/view/upload_courses_to_db.dart';
 
 class CourseListPage extends StatefulWidget {
   const CourseListPage({super.key});
@@ -37,12 +37,9 @@ class _CourseListPageState extends State<CourseListPage> {
   void _filterCourses() {
     final query = _searchController.text.toLowerCase();
     setState(() {
-      _filteredCourses = _allCourses.where((course) => 
-        (course["name"]?.toLowerCase().contains(query) ?? false) ||
-        (course["major"]?.toLowerCase().contains(query) ?? false) ||
-        (course["instructor"]?.toLowerCase().contains(query) ?? false) ||
-        query.isEmpty
-      ).toList();
+      _filteredCourses = _allCourses
+          .where((course) => (course["name"]?.toLowerCase().contains(query) ?? false) || (course["major"]?.toLowerCase().contains(query) ?? false) || (course["instructor"]?.toLowerCase().contains(query) ?? false) || query.isEmpty)
+          .toList();
     });
   }
 
