@@ -48,7 +48,7 @@ class CourseService {
         }
       }
     } catch (e) {
-      print("Error loading courses to Firebase: $e");
+      print("Error loading courses to app: $e");
     }
   }
 }
