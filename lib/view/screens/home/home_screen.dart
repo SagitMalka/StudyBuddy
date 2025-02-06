@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:study_buddy/screens/home/components/app_bar.dart';
+import 'package:study_buddy/view/screens/home/components/app_bar.dart';
 
 import 'components/background.dart';
 

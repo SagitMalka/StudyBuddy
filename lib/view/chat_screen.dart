@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:study_buddy/ViewModel/chat_viewmodel.dart';
-import 'package:study_buddy/services/chat_repository.dart';
+import 'package:study_buddy/view/services/chat_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:study_buddy/screens/message_bubble.dart';
+import 'package:study_buddy/view/screens/message_bubble.dart';
 
 class ChatScreen extends StatefulWidget {
   final String requestId;

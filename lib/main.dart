@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
-import 'package:study_buddy/screens/login_register_page.dart';
-import 'package:study_buddy/screens/home/home_screen.dart';
-import 'package:study_buddy/screens/all_courses/all_courses_screen.dart';
-import 'package:study_buddy/screens/profile/profile_screen.dart';
+import 'package:study_buddy/view/screens/login_register_page.dart';
+import 'package:study_buddy/view/screens/home/home_screen.dart';
+import 'package:study_buddy/view/screens/all_courses/all_courses_screen.dart';
+import 'package:study_buddy/view/screens/profile/profile_screen.dart';
 import 'package:study_buddy/widget_tree.dart';
-import 'package:study_buddy/screens/user_courses/user_courses_screen.dart';
+import 'package:study_buddy/view/screens/user_courses/user_courses_screen.dart';
 
-import 'screens/course_forum/course_forum_screen.dart';
+import 'view/screens/course_forum/course_forum_screen.dart';
 //import 'screens/course_forum/course_chat_forum.dart';
 import 'view/chat_screen.dart';
 

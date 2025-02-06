@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_buddy/services/user_service.dart';
-import 'package:study_buddy/widgets/course_info.dart';
+import 'package:study_buddy/view/services/user_service.dart';
+import 'package:study_buddy/view/widgets/course_info.dart';
 
 class MyCoursesPage extends StatefulWidget {
   const MyCoursesPage({super.key});
@@ -33,12 +33,8 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
   void _filterCourses() {
     final query = _searchController.text.toLowerCase();
     setState(() {
-      _filteredCourses = _myCourses.where((course) => 
-        (course["name"]?.toLowerCase().contains(query) ?? false) ||
-        (course["major"]?.toLowerCase().contains(query) ?? false) ||
-        (course["instructor"]?.toLowerCase().contains(query) ?? false) ||
-        query.isEmpty
-      ).toList();
+      _filteredCourses =
+          _myCourses.where((course) => (course["name"]?.toLowerCase().contains(query) ?? false) || (course["major"]?.toLowerCase().contains(query) ?? false) || (course["instructor"]?.toLowerCase().contains(query) ?? false) || query.isEmpty).toList();
     });
   }
 

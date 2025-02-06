@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:status_alert/status_alert.dart';
-import 'package:study_buddy/services/user_service.dart';
+import 'package:study_buddy/view/services/user_service.dart';
 
 void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course, {required String actionType}) {
   final UserService userService = UserService();

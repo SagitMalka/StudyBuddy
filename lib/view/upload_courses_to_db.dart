@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_buddy/services/course_service.dart';
-import 'package:study_buddy/services/user_service.dart';
+import 'package:study_buddy/view/services/course_service.dart';
+import 'package:study_buddy/view/services/user_service.dart';
 
 class UploadCoursesButton extends StatelessWidget {
   final CourseService _courseService = CourseService();

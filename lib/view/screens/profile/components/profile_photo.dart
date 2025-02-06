@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:study_buddy/services/user_service.dart';
+import 'package:study_buddy/view/services/user_service.dart';
 
 class ProfilePhoto extends StatefulWidget {
   final User? user;
@@ -74,15 +74,10 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
         children: [
           CircleAvatar(
             radius: widget.size,
-            backgroundImage: _imageFile != null
-                ? FileImage(_imageFile!)
-                : (widget.user?.photoURL != null ? FileImage(File(widget.user!.photoURL!)) : null),
-            child: _imageFile == null && widget.user?.photoURL == null
-                ? const Icon(Icons.camera_alt, size: 50)
-                : null,
+            backgroundImage: _imageFile != null ? FileImage(_imageFile!) : (widget.user?.photoURL != null ? FileImage(File(widget.user!.photoURL!)) : null),
+            child: _imageFile == null && widget.user?.photoURL == null ? const Icon(Icons.camera_alt, size: 50) : null,
           ),
-          if (_isSaving)
-            const CircularProgressIndicator(),
+          if (_isSaving) const CircularProgressIndicator(),
         ],
       ),
     );

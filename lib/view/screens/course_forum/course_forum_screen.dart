@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_buddy/services/user_service.dart';
+import 'package:study_buddy/view/services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CourseForumScreen extends StatefulWidget {
@@ -19,8 +19,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
 
   // Method to fetch existing requests for the course
   Future<List<Map<String, dynamic>>> _fetchRequests() async {
-    final snapshot = await _firestore.collection('course_requests').where(
-        'courseId', isEqualTo: widget.courseId).get();
+    final snapshot = await _firestore.collection('course_requests').where('courseId', isEqualTo: widget.courseId).get();
     return snapshot.docs.map((doc) {
       final data = doc.data();
       data['id'] = doc.id;
@@ -162,7 +161,7 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
     } else {
       children.add(Text("Full"));
     }
-    if(creatorId == userUid && userUid != null) {
+    if (creatorId == userUid && userUid != null) {
       children.add(ElevatedButton(
         onPressed: () {},
         child: const Text('Exit group'),
@@ -215,15 +214,14 @@ class _CourseForumScreenState extends State<CourseForumScreen> {
                     );
                   },
                   child: ListTile(
-                    title: Text('$requestName: ${users.length}/$numOfUsers Users'),
-                    subtitle: Text(details),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ..._trailingWidget(creatorID, user?.uid, users, numOfUsers, requestId),
-                      ],
-                    )
-                  ),
+                      title: Text('$requestName: ${users.length}/$numOfUsers Users'),
+                      subtitle: Text(details),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ..._trailingWidget(creatorID, user?.uid, users, numOfUsers, requestId),
+                        ],
+                      )),
                 ),
               );
             },

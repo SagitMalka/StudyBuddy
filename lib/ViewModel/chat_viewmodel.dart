@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:study_buddy/services/chat_repository.dart';
-import 'package:study_buddy/services/user_service.dart';
+import 'package:study_buddy/view/services/chat_repository.dart';
+import 'package:study_buddy/view/services/user_service.dart';
 
 class ChatViewModel extends ChangeNotifier {
   final ChatRepository _chatRepository;
