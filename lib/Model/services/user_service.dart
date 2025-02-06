@@ -84,16 +84,8 @@ class UserService {
           await _firestore.collection('users').doc(user.uid).update({
             'user_courses': userCourses,
           });
-
-          print('Course removed: $courseName');
-        } else {
-          print('Course not found in user\'s courses list');
         }
-      } else {
-        print('User document not found');
       }
-    } else {
-      print('User not authenticated');
     }
   }
 
@@ -144,7 +136,6 @@ class UserService {
           },
           SetOptions(merge: true), // Ensures only the specified fields are updated if the document exists
         );
-        print("User info updated successfully");
       }
     } on FirebaseAuthException catch (e) {
       // Handle specific Firebase authentication errors
