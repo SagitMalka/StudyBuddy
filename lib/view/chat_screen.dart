@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:study_buddy/ViewModel/chat_viewmodel.dart';
 import 'package:study_buddy/Model/services/chat_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:study_buddy/View/screens/course_forum/message_bubble.dart';
 
 class ChatScreen extends StatefulWidget {
   final String requestId;
-  ChatScreen({Key? key, required this.requestId}) : super(key: key);
+  const ChatScreen({Key? key, required this.requestId}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -19,6 +18,13 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     _viewModel = ChatViewModel(ChatRepository());
+    _viewModel.listenToMessages(widget.requestId);
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -28,28 +34,22 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: _viewModel.getMessagesStream(widget.requestId),
+            child: StreamBuilder<List<Map<String, dynamic>>>(
+              stream: _viewModel.messagesStream,
               builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+                if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
 
-                final messages = snapshot.data!.docs;
-                List<MessageBubble> messageWidgets = messages.map((message) {
-                  final messageText = message['text'];
-                  final messageSender = message['sender'];
-                  return MessageBubble(
-                    sender: messageSender,
-                    text: messageText,
-                    isMe: _viewModel.currentUser?.email == messageSender,
-                  );
-                }).toList();
-
+                final messages = snapshot.data!;
                 return ListView.builder(
                   reverse: true,
-                  itemCount: messageWidgets.length,
-                  itemBuilder: (context, index) => messageWidgets[index],
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    return MessageBubble(
+                      sender: messages[index]['sender'],
+                      text: messages[index]['text'],
+                      isMe: _viewModel.currentUser?.email == messages[index]['sender'],
+                    );
+                  },
                 );
               },
             ),

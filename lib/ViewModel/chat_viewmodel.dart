@@ -1,29 +1,36 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:study_buddy/Model/services/chat_repository.dart';
-import 'package:study_buddy/Model/services/user_service.dart';
 
-class ChatViewModel extends ChangeNotifier {
+class ChatViewModel {
   final ChatRepository _chatRepository;
-  final UserService _userService = UserService();
   final TextEditingController messageController = TextEditingController();
+  final StreamController<List<Map<String, dynamic>>> _messagesController = StreamController.broadcast();
+  User? get currentUser => FirebaseAuth.instance.currentUser;
 
   ChatViewModel(this._chatRepository);
 
-  User? get currentUser => _userService.getCurrentUser();
+  // Public messages stream
+  Stream<List<Map<String, dynamic>>> get messagesStream => _messagesController.stream;
 
-  void sendMessage(String requestId) {
-    _chatRepository.sendMessage(
-      requestId,
-      messageController.text,
-      currentUser?.email,
-      currentUser?.uid,
-    );
+  // Fetch and listen to messages
+  void listenToMessages(String requestId) {
+    _chatRepository.getChatMessages(requestId).listen((snapshot) {
+      final messages = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      _messagesController.add(messages);
+    });
+  }
+
+  // Send a new message
+  Future<void> sendMessage(String requestId) async {
+    if (messageController.text.trim().isEmpty) return;
+    await _chatRepository.sendMessage(requestId, messageController.text, currentUser!.email ?? "Unknown");
     messageController.clear();
   }
 
-  Stream<QuerySnapshot> getMessagesStream(String requestId) {
-    return _chatRepository.getMessagesStream(requestId);
+  void dispose() {
+    _messagesController.close();
   }
 }
