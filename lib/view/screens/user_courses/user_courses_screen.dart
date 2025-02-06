@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_buddy/view/services/user_service.dart';
-import 'package:study_buddy/view/widgets/course_info.dart';
+import 'package:study_buddy/Model/services/user_service.dart';
+import 'package:study_buddy/View/widgets/course_info.dart';
 
 class MyCoursesPage extends StatefulWidget {
   const MyCoursesPage({super.key});

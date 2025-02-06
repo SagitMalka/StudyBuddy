@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:study_buddy/auth.dart';
 
-import '../../services/user_service.dart';
+import '../../../Model/services/user_service.dart';
 import 'components/profile_photo.dart';
 import 'components/user_info.dart';
 

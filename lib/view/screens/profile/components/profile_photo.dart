@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:study_buddy/view/services/user_service.dart';
+import 'package:study_buddy/Model/services/user_service.dart';
 
 class ProfilePhoto extends StatefulWidget {
   final User? user;

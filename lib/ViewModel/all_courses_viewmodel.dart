@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../view/services/course_service.dart';
+import '../Model/services/course_service.dart';
 
 class AllCoursesViewmodel extends ChangeNotifier {
   final CourseService _courseService = CourseService();

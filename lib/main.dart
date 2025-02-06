@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
-import 'package:study_buddy/view/screens/login_register_page.dart';
-import 'package:study_buddy/view/screens/home/home_screen.dart';
-import 'package:study_buddy/view/screens/all_courses/all_courses_screen.dart';
-import 'package:study_buddy/view/screens/profile/profile_screen.dart';
+import 'package:study_buddy/View/screens/login_register_page.dart';
+import 'package:study_buddy/View/screens/home/home_screen.dart';
+import 'package:study_buddy/View/screens/all_courses/all_courses_screen.dart';
+import 'package:study_buddy/View/screens/profile/profile_screen.dart';
 import 'package:study_buddy/widget_tree.dart';
-import 'package:study_buddy/view/screens/user_courses/user_courses_screen.dart';
+import 'package:study_buddy/View/screens/user_courses/user_courses_screen.dart';
 
-import 'view/screens/course_forum/course_forum_screen.dart';
+import 'View/screens/course_forum/course_forum_screen.dart';
 //import 'screens/course_forum/course_chat_forum.dart';
-import 'view/chat_screen.dart';
+import 'View/chat_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures bindings are initialized
