@@ -13,7 +13,7 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
   final UserService _userService = UserService();
   List<Map<String, dynamic>> _myCourses = [];
   List<Map<String, dynamic>> _filteredCourses = [];
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
               controller: _searchController,
               decoration: InputDecoration(
                 hintText: 'Search my courses...',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
