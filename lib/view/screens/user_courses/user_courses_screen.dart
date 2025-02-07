@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_buddy/ViewModel/user_courses_viewmodel.dart';
 import 'package:study_buddy/Model/services/user_service.dart';
 import 'package:study_buddy/View/widgets/course_info.dart';
 
@@ -10,40 +11,30 @@ class MyCoursesPage extends StatefulWidget {
 }
 
 class _MyCoursesPageState extends State<MyCoursesPage> {
-  final UserService _userService = UserService();
-  List<Map<String, dynamic>> _myCourses = [];
-  List<Map<String, dynamic>> _filteredCourses = [];
+  late MyCoursesViewModel _viewModel;
   final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadUserCourses();
-    _searchController.addListener(_filterCourses);
-  }
-
-  Future<void> _loadUserCourses() async {
-    final courses = await _userService.fetchUserCourses();
-    setState(() {
-      _myCourses = courses;
-      _filteredCourses = courses;
+    _viewModel = MyCoursesViewModel(UserService());
+    _loadCourses();
+    _searchController.addListener(() {
+      setState(() {
+        _viewModel.filterCourses(_searchController.text);
+      });
     });
   }
 
-  void _filterCourses() {
-    final query = _searchController.text.toLowerCase();
-    setState(() {
-      _filteredCourses =
-          _myCourses.where((course) => (course["name"]?.toLowerCase().contains(query) ?? false) || (course["major"]?.toLowerCase().contains(query) ?? false) || (course["instructor"]?.toLowerCase().contains(query) ?? false) || query.isEmpty).toList();
-    });
+  Future<void> _loadCourses() async {
+    await _viewModel.loadUserCourses();
+    setState(() {}); // Update UI after loading courses
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Courses'),
-      ),
+      appBar: AppBar(title: const Text('My Courses')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -61,20 +52,21 @@ class _MyCoursesPageState extends State<MyCoursesPage> {
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
-                itemCount: _filteredCourses.length,
+                itemCount: _viewModel.filteredCourses.length,
                 itemBuilder: (context, index) {
+                  final course = _viewModel.filteredCourses[index];
                   return ListTile(
-                    title: Text(_filteredCourses[index]['name']),
+                    title: Text(course['name']),
                     onTap: () => Navigator.pushNamed(
                       context,
                       '/course_forum',
-                      arguments: _filteredCourses[index]['id'],
+                      arguments: course['id'],
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.info),
                       onPressed: () => showCourseDetailsDialog(
                         context,
-                        _filteredCourses[index],
+                        course,
                         actionType: 'user_courses',
                       ),
                     ),
