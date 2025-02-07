@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:study_buddy/ViewModel/course_list_viewmodel.dart';
 import 'package:study_buddy/Model/services/course_service.dart';
-
 import 'components/courses_list.dart';
 import 'package:study_buddy/View/upload_courses_to_db.dart';
 
@@ -12,52 +12,33 @@ class CourseListPage extends StatefulWidget {
 }
 
 class _CourseListPageState extends State<CourseListPage> {
-  final CourseService _courseService = CourseService();
-  List<Map<String, dynamic>> _allCourses = [];
-
-  TextEditingController _searchController = TextEditingController();
-  List<Map<String, dynamic>> _filteredCourses = [];
+  late final CourseListViewModel _viewModel;
 
   @override
   void initState() {
     super.initState();
-    _loadCourses();
-
-    _searchController.addListener(_filterCourses);
+    _viewModel = CourseListViewModel(CourseService());
   }
 
-  Future<void> _loadCourses() async {
-    final courses = await _courseService.fetchAllCourses();
-    setState(() {
-      _allCourses = courses;
-      _filteredCourses = courses;
-    });
-  }
-
-  void _filterCourses() {
-    final query = _searchController.text.toLowerCase();
-    setState(() {
-      _filteredCourses = _allCourses
-          .where((course) => (course["name"]?.toLowerCase().contains(query) ?? false) || (course["major"]?.toLowerCase().contains(query) ?? false) || (course["instructor"]?.toLowerCase().contains(query) ?? false) || query.isEmpty)
-          .toList();
-    });
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Course List'),
-      ),
+      appBar: AppBar(title: const Text('Course List')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
-              controller: _searchController,
+              controller: _viewModel.searchController,
               decoration: InputDecoration(
                 hintText: 'Search courses...',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -65,12 +46,16 @@ class _CourseListPageState extends State<CourseListPage> {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: CourseListView(
-                allCourses: _filteredCourses,
+              child: StreamBuilder<List<Map<String, dynamic>>>(
+                stream: _viewModel.coursesStream,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+                  return CourseListView(allCourses: snapshot.data!);
+                },
               ),
             ),
             const SizedBox(height: 20),
-            UploadCoursesButton()
+            UploadCoursesButton(),
           ],
         ),
       ),
