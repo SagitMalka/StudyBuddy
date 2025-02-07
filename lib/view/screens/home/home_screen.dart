@@ -40,20 +40,20 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () => Navigator.pushNamed(context, '/my_courses'),
-                  child: const Text('My Courses'),
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(35),
                   ),
+                  child: const Text('My Courses'),
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () => Navigator.pushNamed(context, '/courses'),
-                  child: const Text('View All Courses'),
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(45),
                   ),
+                  child: const Text('View All Courses'),
                 ),
                 const SizedBox(height: 100),
               ],
