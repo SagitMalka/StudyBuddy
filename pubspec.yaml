@@ -1,0 +1,52 @@
+name: study_buddy
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  # Firebase - שימוש בגרסאות תואמות
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  firebase_auth_web: ^5.7.3  # עדכון לגרסה יציבה
+  cloud_firestore: ^4.14.0
+  firebase_messaging: ^14.7.10
+  google_sign_in: ^6.2.1
+
+  # Web Support
+  js: ^0.6.7  # נדרש כדי לפתור את הבעיה של PromiseJsImpl
+
+  # Geolocation & Geocoding
+  geolocator: ^11.0.0
+  geocoding: ^3.0.0
+
+  # Local Notifications
+  flutter_local_notifications: ^16.3.2
+
+  # UI & Utilities
+  google_fonts: ^6.2.1
+  image_picker: ^1.0.7
+  cupertino_icons: ^1.0.8
+  status_alert: ^1.0.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/DB/
+    - assets/images/
+    - assets/google_logo.png
