@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> signInWithEmailAndPassword(BuildContext context) async {
     try {
-      await Auth().sighnInWithEmailAndPassword(
+      await Auth().signInWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
@@ -74,7 +74,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: isLogin ? () => signInWithEmailAndPassword(context) : () => createUserWithEmailAndPassword(context),
+      onPressed: isLogin
+          ? () => signInWithEmailAndPassword(context)
+          : () => createUserWithEmailAndPassword(context),
       child: Text(isLogin ? 'Login' : 'Register'),
     );
   }
