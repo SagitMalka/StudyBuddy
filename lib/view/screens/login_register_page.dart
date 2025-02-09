@@ -91,6 +91,22 @@ class _LoginPageState extends State<LoginPage> {
       child: Text(isLogin ? 'Regiter instead' : 'Login instead'),
     );
   }
+  /// **פתיחת חשבון עם Google**
+Widget _googleSignInButton(BuildContext context) {
+  return ElevatedButton.icon(
+    onPressed: () => signInWithGoogle(context),
+    icon: Image.asset(
+      'assets/images/google_logo.png',
+      height: 24,
+    ), // Image.asset
+    label: const Text("Sign in with Google"),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
+    ),
+  ); // ElevatedButton.icon
+}
+
 
   @override
   Widget build(BuildContext context) {
