@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? errorMassage = '';
+  String? errorMessage = '';
   bool isLogin = true;
 
   final TextEditingController _controllerEmail = TextEditingController();
@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMassage = e.message;
+        errorMessage = e.message;
       });
     }
   }
@@ -45,21 +45,32 @@ class _LoginPageState extends State<LoginPage> {
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMassage = e.message;
+        errorMessage = e.message;
       });
     }
 
     UserService().updateUserInfo(_controllerName.text, _controllerEmail.text);
   }
 
+  /// *פונקציה להתחברות עם Google*
+  Future<void> signInWithGoogle(BuildContext context) async {
+    try {
+      await Auth().signInWithGoogle();
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
   Widget _title() {
     return const Text('Study Buddy');
   }
 
-  Widget _entryField(
-    String title,
-    TextEditingController controller,
-  ) {
+  Widget _entryField(String title, TextEditingController controller) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -69,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _errorMessage() {
-    return Text(errorMassage == '' ? '' : 'Humm ? $errorMassage');
+    return Text(errorMessage == '' ? '' : 'Oops! $errorMessage');
   }
 
   Widget _submitButton(BuildContext context) {
@@ -88,25 +99,25 @@ class _LoginPageState extends State<LoginPage> {
           isLogin = !isLogin;
         });
       },
-      child: Text(isLogin ? 'Regiter instead' : 'Login instead'),
+      child: Text(isLogin ? 'Register instead' : 'Login instead'),
     );
   }
-  /// **פתיחת חשבון עם Google**
-Widget _googleSignInButton(BuildContext context) {
-  return ElevatedButton.icon(
-    onPressed: () => signInWithGoogle(context),
-    icon: Image.asset(
-      'assets/images/google_logo.png',
-      height: 24,
-    ), // Image.asset
-    label: const Text("Sign in with Google"),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-    ),
-  ); // ElevatedButton.icon
-}
 
+  /// *כפתור התחברות עם Google*
+  Widget _googleSignInButton(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: () => signInWithGoogle(context),
+      icon: Image.asset(
+        'assets/images/google_logo.png',
+        height: 24,
+      ),
+      label: const Text("Sign in with Google"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,12 +133,14 @@ Widget _googleSignInButton(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _entryField('email', _controllerEmail),
-            _entryField('password', _controllerPassword),
-            if (!isLogin) _entryField('name', _controllerName),
+            _entryField('Email', _controllerEmail),
+            _entryField('Password', _controllerPassword),
+            if (!isLogin) _entryField('Name', _controllerName),
             _errorMessage(),
             _submitButton(context),
             _loginOrRegisterButton(),
+            const SizedBox(height: 10),
+            _googleSignInButton(context),  // הוספת כפתור התחברות עם גוגל
           ],
         ),
       ),
