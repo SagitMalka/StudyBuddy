@@ -6,7 +6,7 @@ import 'package:study_buddy/View/screens/all_courses/all_courses_screen.dart';
 import 'package:study_buddy/View/screens/profile/profile_screen.dart';
 import 'package:study_buddy/widget_tree.dart';
 import 'package:study_buddy/View/screens/user_courses/user_courses_screen.dart';
-
+import 'package:study_buddy/firebase_messaging_service.dart';
 import 'View/screens/course_forum/course_forum_screen.dart';
 //import 'screens/course_forum/course_chat_forum.dart';
 import 'View/chat_screen.dart';
@@ -35,8 +35,10 @@ class MyApp extends StatelessWidget {
         '/courses': (context) => const CourseListPage(),
         '/profile': (context) => const ProfilePage(),
         '/my_courses': (context) => const MyCoursesPage(),
-        '/course_forum': (context) => CourseForumScreen(courseId: ModalRoute.of(context)!.settings.arguments as String),
-        '/chat': (context) => ChatScreen(requestId: ModalRoute.of(context)!.settings.arguments as String),
+        '/course_forum': (context) => CourseForumScreen(
+            courseId: ModalRoute.of(context)!.settings.arguments as String),
+        '/chat': (context) => ChatScreen(
+            requestId: ModalRoute.of(context)!.settings.arguments as String),
       },
     );
   }

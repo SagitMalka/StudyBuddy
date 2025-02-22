@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:status_alert/status_alert.dart';
+// import 'package:status_alert/status_alert.dart';
 import 'package:study_buddy/Model/services/user_service.dart';
 
 void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course, {required String actionType}) {
@@ -82,14 +82,15 @@ void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course, 
                 final truncatedName = course['name'].length > 25 ? '${course['name'].substring(0, 25)}...' : course['name'];
 
                 if (context.mounted) {
-                  StatusAlert.show(
-                    context,
-                    duration: const Duration(seconds: 2),
-                    title: 'Success',
-                    subtitle: '$truncatedName\nadded to your Courses!',
-                    configuration: const IconConfiguration(icon: Icons.check_circle, color: Colors.green),
-                    backgroundColor: Colors.green[50],
-                  );
+                  // StatusAlert.show(
+                  //   context,
+                  //   duration: const Duration(seconds: 2),
+                  //   title: 'Success',
+                  //   subtitle: '$truncatedName\nadded to your Courses!',
+                  //   configuration: const IconConfiguration(icon: Icons.check_circle, color: Colors.green),
+                  //   backgroundColor: Colors.green[50],
+                  // );
+                  
                   Navigator.pop(context);
                 }
               },
@@ -103,14 +104,14 @@ void showCourseDetailsDialog(BuildContext context, Map<String, dynamic> course, 
                 final truncatedName = course['name'].length > 25 ? '${course['name'].substring(0, 25)}...' : course['name'];
 
                 if (context.mounted) {
-                  StatusAlert.show(
-                    context,
-                    duration: const Duration(seconds: 2),
-                    title: 'Success',
-                    subtitle: '$truncatedName\nremoved from your Courses!',
-                    configuration: const IconConfiguration(icon: Icons.check_circle, color: Colors.green),
-                    backgroundColor: Colors.green[50],
-                  );
+                  // StatusAlert.show(
+                  //   context,
+                  //   duration: const Duration(seconds: 2),
+                  //   title: 'Success',
+                  //   subtitle: '$truncatedName\nremoved from your Courses!',
+                  //   configuration: const IconConfiguration(icon: Icons.check_circle, color: Colors.green),
+                  //   backgroundColor: Colors.green[50],
+                  // );
                   Navigator.pop(context);
                 }
               },

@@ -24,18 +24,18 @@ dependencies:
   js: ^0.6.7  # נדרש כדי לפתור את הבעיה של PromiseJsImpl
 
   # Geolocation & Geocoding
-  geolocator: ^11.0.0
+  geolocator: ^13.0.2
   geocoding: ^3.0.0
 
   # Local Notifications
-  flutter_local_notifications: ^16.3.2
+  flutter_local_notifications: ^18.0.1
 
   # UI & Utilities
   google_fonts: ^6.2.1
   image_picker: ^1.0.7
   cupertino_icons: ^1.0.8
-  status_alert: ^1.0.1
-  
+  # status_alert: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -49,4 +49,3 @@ flutter:
   assets:
     - assets/DB/
     - assets/images/
-    - assets/google_logo.png
